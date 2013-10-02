@@ -10,7 +10,7 @@ main(){
   while ((input = getchar()) != EOF){
     ;
   }
-  putchar(input);
+  printf("%d", input);
 }
 
 
