@@ -3,18 +3,24 @@
 /* Program that prints output to standard output 
    after stripping off extra blank spaces
 */
+#define INBLANK  1
+#define OUTBLANK 0
 
 main(){
-  char back, c;
+  char c;
+  int STATE=OUTBLANK;
   c = getchar();
   while (c != EOF){
-    putchar(c);
-    back = c;
-    c = getchar();
-    if (c == ' ' && back == ' ') {
-      c = getchar();
-      while (c == ' ') c = getchar();
-      back = ' ';
+    if      (STATE == INBLANK && c == ' ') ;   /* one space to another - do nothing */
+    else if (STATE == INBLANK && c != ' ') {   /* moving from space to word */
+      STATE=OUTBLANK;
+      putchar(c);
     }
+    else if (STATE == OUTBLANK && c == ' ') {  /* first space after word */
+      STATE=INBLANK;
+      putchar(c);
+    }
+    else putchar(c);                           /* inside a word */
+    c = getchar();
   }
 } 
