@@ -1,11 +1,7 @@
 #include <stdio.h>
 
-/* program that prints all input lines
-  greater than 80 characters
-
-  while(there's another line)
-      get next line
-      if it is over 80 chars, print it.
+/* program that reverses strings line by line, taken from 
+   standard input
 */
 
 #define MAXLENGTH 1000
@@ -35,7 +31,7 @@ int getnextline(char line[]){
 int main(){
   int i,len;
   char nextline[MAXLENGTH];
-  while( (len = getnextline(nextline)) > 1 ){
+  while( (len = getnextline(nextline)) > 0 ){
     reverse_print(nextline,len);
     printf("\n");
   }  
